@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 12:54:06 by msaouab           #+#    #+#              #
-#    Updated: 2022/03/28 14:44:34 by msaouab          ###   ########.fr        #
+#    Updated: 2022/04/02 20:11:14 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,22 +34,26 @@ SRC =	./parsing/parser.c\
 		./parsing/signals_readline.c\
 		./parsing/press_key.c\
 		./parsing/hundel_error.c\
+		./parsing/signal_handeler.c\
 		./parsing/get_about_dollar.c\
 		./parsing/ft_frees.c\
-	  	./execution/builtin.c\
-	  	./execution/cd_builtin.c\
-	  	./execution/cd_chpwd.c\
-	  	./execution/echo_builtin.c \
-	  	./execution/error_file.c\
+		./parsing/linked_list.c\
 		./execution/execution.c\
-		./execution/export_builtin.c\
-		./execution/linked_list.c\
-		./execution/message_errors.c\
-		./execution/open_file.c\
-		./execution/pipe_execution.c\
-		./execution/utils.c\
-		./execution/beta_export.c\
-		./execution/signal_handler.c\
+	  	./execution/builtin.c\
+		./execution/ft_echo.c\
+		./execution/ft_pwd.c\
+		./execution/ft_env.c\
+		./execution/ft_cd.c\
+	  	# ./execution/cd_builtin.c\
+	  	# ./execution/cd_chpwd.c\
+	  	# ./execution/echo_builtin.c \
+	  	# ./execution/error_file.c\
+		# ./execution/export_builtin.c\
+		# ./execution/message_errors.c\
+		# ./execution/open_file.c\
+		# ./execution/pipe_execution.c\
+		# ./execution/utils.c\
+		# ./execution/beta_export.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
+/*   Updated: 2022/04/02 20:26:56 by msaouab          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define	MINISHELL_H
 
@@ -173,11 +185,12 @@ int		ft_listsize(t_env *lst);
 int		ft_listsize_file(t_files *files);
 char	*find_value(char *find, t_var *var);
 void	builtin_cd(t_var *var);
-void	builtin_pwd(t_var *var);
-void	builtin_env(t_var *var);
+void	ft_pwd(t_var *var);
+void	ft_env(t_var *var);
+void	ft_cd(t_var *var);
 void	builtin_unset(t_var *var);
 void	builtin_exit(t_var *var);
-void	builtin_echo(t_var *var);
+void	ft_echo(t_var *var);
 void	builtin_export(t_var *var);
 void	execution(t_var *var, char **env);
 void	sys_execution(t_var *var, char **env);
@@ -216,4 +229,9 @@ void	pipe_exec_bis(t_parser *prs, int *pipefds, int j);
 void	signal_handler_c(int signo);
 void	signal_handler_quit(int signo);
 void	init_env(t_var *var, char **env);
+
+
+void	chenv(t_var *var, char *file);
+
 #endif
+

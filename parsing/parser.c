@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:32:25 by msaouab           #+#    #+#             */
-/*   Updated: 2022/03/28 14:43:40 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/02 12:24:28 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	fill_command(t_var *var, char **env)
 
 	prs = NULL;
 	i = -1;
+	// printf("%s\n", prs->cmd);
 	var->split_sc = ft_split(var->line, ';');
 	var->old_out = dup(STDOUT_FILENO);
 	var->old_in = dup(STDIN_FILENO);
@@ -70,7 +71,7 @@ void	fill_command(t_var *var, char **env)
 void	ft_newline(t_var *var, char *tmp)
 {
 	// read_line(var);
-	var->line = readline("");
+	var->line = readline("\033[1;32mminishell~>\033[0m");
 	tmp = var->line;
 	var->line = ft_strtrim(var->line, " ");
 	free(tmp);
@@ -79,8 +80,8 @@ void	ft_newline(t_var *var, char *tmp)
 int	main(int ac, char **av, char **env)
 {
 	t_var	var;
-	int		i;
 	char	*tmp;
+	int		i;
 
 	ac = 1;
 	av = NULL;
@@ -90,7 +91,7 @@ int	main(int ac, char **av, char **env)
 	{
 		i = -1;
 		init_symbol(&var);
-		ft_putstr_fd("\033[1;32mminishell~>\033[0m", 1);
+		// ft_putstr_fd("\033[1;32mminishell~>\033[0m", 1);
 		ft_newline(&var, tmp);
 		syntax_error(&var, i);
 		if (var.error != 0)
