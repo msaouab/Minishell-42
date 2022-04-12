@@ -6,21 +6,23 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 19:54:24 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/02 21:10:14 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/08 22:34:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	chenv(t_var *var, char *file)
+void	ch_pwd(t_var *var, char *home)
 {
 	t_env	*current;
 
 	current = var->head_env;
 	while (current)
 	{
-		if (ft_strncmp("PWD", current->key, 3) == 0)
-			current->value = file;
+		if (ft_strncmp(current->key, "PWD", 3) == 0)
+		{
+			current->value = home;
+		}
 		current = current->next;
 	}
 }

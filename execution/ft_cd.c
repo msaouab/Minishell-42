@@ -5,23 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 17:47:12 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/02 21:12:40 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/08 21:10:47 by msaouab           #+#    #+#             */
+/*   Updated: 2022/04/08 22:34:24 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+void	no_file(char *cmd, char *file)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": no such file or directory: ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd("\n", 2);
+}
+
 char	*get_home(t_var *var)
 {
 	t_env	*current;
-	int		i;
 
-	i = 0;
 	current = var->head_env;
 	while (current)
 	{
-		if (ft_strncmp("HOME", current->key, 4) == 0)
+		if (ft_strncmp(current->key, "HOME", 4) == 0)
 			return (ft_strdup(current->value));
 		current = current->next;
 	}
@@ -30,26 +36,17 @@ char	*get_home(t_var *var)
 
 void	ft_cd(t_var *var)
 {
-	t_env	*old_pwd;
 	char	*home;
 	int		cd;
-	int		i;
 
-	i = 1;
-	old_pwd = var->head_env;
-	if (!var->prs->args[i] || (ft_strncmp("~", var->prs->args[i], 1) == 0))
-	{
+	if (!(var->prs->args[1]) || (ft_strncmp(var->prs->args[1], "~", 1) == 0))
 		home = get_home(var);
-		if (!home)
-			return ;
-	}
-	if (ft_strncmp("-", var->prs->args[i], 1) == 0)
-	{
-		
-	}
+	else
+		home = ft_strdup(var->prs->args[1]);
+	// printf("%s\n", var->prs->args[1]);
 	cd = chdir(home);
 	if (cd < 0)
-		printf("no such file or directory: %s\n", var->prs->args[i]);
+		no_file(var->prs->cmd, home);
 	else
-		chenv(var, home);
+		ch_pwd(var, home);
 }

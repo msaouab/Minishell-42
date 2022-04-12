@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/02 20:26:56 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/11 23:03:35 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <readline/history.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <string.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <stdlib.h>
@@ -53,8 +55,7 @@ typedef struct s_his
 	char			*input;
 	int				cursor;
 	struct s_his	*next;
-	struct s_his	*prev;
-}				t_his;
+	struct s_his	*prev;}				t_his;
 
 typedef struct s_env
 {
@@ -176,7 +177,6 @@ void	check_dollar_first(t_var *var, char **line, int *i);
 void	ft_free(t_var *var);
 char	*get_home(t_var *var);
 int		get_oldpwd(t_var *var);
-void	chpwd_env(t_var *var);
 char	*check_home(t_var *var);
 void	export_env(t_var *var);
 void	export_var(t_var *var, int *j);
@@ -184,14 +184,13 @@ int		echo_option(char *str, int *check);
 int		ft_listsize(t_env *lst);
 int		ft_listsize_file(t_files *files);
 char	*find_value(char *find, t_var *var);
-void	builtin_cd(t_var *var);
 void	ft_pwd(t_var *var);
 void	ft_env(t_var *var);
 void	ft_cd(t_var *var);
-void	builtin_unset(t_var *var);
-void	builtin_exit(t_var *var);
+void	ft_unset(t_var *var);
+void	ft_exit(t_var *var);
 void	ft_echo(t_var *var);
-void	builtin_export(t_var *var);
+void	ft_export(t_var *var);
 void	execution(t_var *var, char **env);
 void	sys_execution(t_var *var, char **env);
 int		builtin(t_var *var);
@@ -222,7 +221,7 @@ void	error_command(char *str, t_var *var);
 void	error_open_file(t_var *var, t_files *files);
 void	replace_pwd(t_env *pwd, t_env *oldpwd, char *path);
 void	pipe_exec(t_var *var, int *pipefds, int pipenumber, char **env);
-void	no_file(t_var *var, char *cmd, char *arg, char *msg);
+void	no_file(char *cmd, char *file);
 char	**envp_continue(t_env *current, char **key_value, int *i);
 void	pipe_exec(t_var *var, int *pipefds, int pipenumber, char **env);
 void	pipe_exec_bis(t_parser *prs, int *pipefds, int j);
@@ -231,7 +230,7 @@ void	signal_handler_quit(int signo);
 void	init_env(t_var *var, char **env);
 
 
-void	chenv(t_var *var, char *file);
+void	ch_pwd(t_var *var, char *home);
 
 #endif
 

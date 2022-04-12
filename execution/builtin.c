@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:46:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/02 19:54:41 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/10 22:12:22 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	builtin(t_var *var)
 {
-	if (!(ft_strncmp("cd", *(var->prs->args), 3)) && !var->error)
-		ft_cd(var);
+	// if (!(ft_strncmp("cd", *(var->prs->args), 3)) && !var->error)
+		// ft_cd(var);
 	if (!(ft_strncmp("pwd", *(var->prs->args), 4)) && !var->error)
 		ft_pwd(var);
 	else if (!(ft_strncmp("env", *(var->prs->args), 4)) && !var->error)
