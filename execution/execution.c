@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/11 22:57:50 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:01:39 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,27 @@ char	*join_command(t_var *var)
 		{
 			cmd = path[i];
 			// ft_free_args(path);
-		printf(":::%s\n", path[i]);
-			// cmd = ft_strdup("/bin/ls");
 			return (path[i]);
 		}
 		i++;
 	}
-	// cmd = ft_strdup("/bin/ls");
+	if (path[i] == NULL)
+		ft_write(var->prs->cmd);
 	return (NULL);
 }
 
+// void	ft_execve(t_var *var, char **env, char *path)
+// {
+	
+// }
+
 void	sys_execution(t_var *var, char **env)
 {
-	// (void)env;
+	t_files	*file;
 	char	*path;
 
+	file = var->prs->file_head;
 	path = join_command(var);
-	printf("-*-*-*-*%s\n",path);
 	var->pid = fork();
 	if (var->pid == -1)
 		strerror(var->pid);
@@ -82,16 +86,13 @@ void	sys_execution(t_var *var, char **env)
 
 void	execution(t_var *var, char **env)
 {
-	// printf("|%s|\n", var->prs->cmd);
-	(void)env;
 	if (ft_listsize_prs(var->prs) == 1)
 	{
-		// if (ft_listsize_file(var->prs->file_head) > 0)
-			// open_file(var);
+		if (ft_listsize_file(var->prs->file_head) > 0)
+			open_file(var);
 		if (!var->error)
 		{
-			// builtin(var);
-			// if (builtin(var) < 0 && !var->error)
+			if (builtin(var) < 0 && !var->error)
 				sys_execution(var, env);
 		}
 	}

@@ -6,15 +6,15 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/11 23:03:35 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/13 16:16:38 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define	MINISHELL_H
 
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <sys/stat.h>
+# include <sys/errno.h>
 # include "../libft/libft.h"
 # include <dirent.h>
 # include <curses.h>
@@ -221,7 +222,7 @@ void	error_command(char *str, t_var *var);
 void	error_open_file(t_var *var, t_files *files);
 void	replace_pwd(t_env *pwd, t_env *oldpwd, char *path);
 void	pipe_exec(t_var *var, int *pipefds, int pipenumber, char **env);
-void	no_file(char *cmd, char *file);
+// void	no_file(char *cmd, char *file);
 char	**envp_continue(t_env *current, char **key_value, int *i);
 void	pipe_exec(t_var *var, int *pipefds, int pipenumber, char **env);
 void	pipe_exec_bis(t_parser *prs, int *pipefds, int j);
@@ -230,7 +231,10 @@ void	signal_handler_quit(int signo);
 void	init_env(t_var *var, char **env);
 
 
-void	ch_pwd(t_var *var, char *home);
-
+void	ch_pwd(t_var *var);
+void	ft_write(char *cmd);
+void	no_file(t_var *var, char *cmd, char *arg, char *msg);
+void    ft_error(char *file);
+void	ft_exit(t_var *var);
 #endif
 
