@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:31:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/03/28 14:43:17 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/15 00:17:18 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ t_env	*create_node(char **key_value)
 	list = (t_env *)malloc(sizeof(t_env));
 	list->key = ft_strdup(key_value[0]);
 	list->value = ft_strdup(key_value[1]);
-	if (!ft_strncmp(key_value[1], "(null)", 6))
-		list->print = 0;
-	else
-		list->print = 1;
 	list->next = NULL;
 	return (list);
 }

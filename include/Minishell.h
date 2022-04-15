@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/13 16:16:38 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/14 10:18:20 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ typedef struct s_his
 	char			*input;
 	int				cursor;
 	struct s_his	*next;
-	struct s_his	*prev;}				t_his;
+	struct s_his	*prev;
+}				t_his;
 
 typedef struct s_env
 {
