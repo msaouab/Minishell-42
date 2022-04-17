@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:13:09 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/13 16:39:03 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/15 12:07:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	ft_exit(t_var *var)
 		ft_putstr_fd("exit\nminshell: exit: ", 1);
 		ft_putstr_fd(var->prs->args[1], 1);
 		ft_putstr_fd(": numeric argument required\n", 1);
-		exit(0);
+		exit(-1);
 	}
 	else
 	{
 		ft_putstr_fd("exit\n", 1);
-		exit(0);
+		exit(var->status);
 	}
 }

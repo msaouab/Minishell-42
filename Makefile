@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 12:54:06 by msaouab           #+#    #+#              #
-#    Updated: 2022/04/13 22:29:49 by msaouab          ###   ########.fr        #
+#    Updated: 2022/04/17 22:18:17 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,11 @@ SRC =	./parsing/parser.c\
 		./execution/ft_cd.c\
 		./execution/ft_exit.c\
 		./execution/ft_export.c\
+		./execution/ft_unset.c\
 		./execution/error.c\
 		./execution/open_file.c\
-	  	# ./execution/cd_builtin.c\
-	  	# ./execution/cd_chpwd.c\
+	  	./execution/free.c\
+	  	./execution/pipe.c\
 	  	# ./execution/echo_builtin.c \
 	  	# ./execution/error_file.c\
 		# ./execution/export_builtin.c\

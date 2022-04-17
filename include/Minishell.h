@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/14 10:18:20 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/17 22:17:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,5 +237,7 @@ void	ft_write(char *cmd);
 void	no_file(t_var *var, char *cmd, char *arg, char *msg);
 void    ft_error(char *file);
 void	ft_exit(t_var *var);
+void	ft_assign(char **dst, char *src, char *to_free);
+void	pipeline(t_var *var, char **env);
 #endif
 

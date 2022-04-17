@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 19:54:24 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 15:57:52 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/17 22:04:22 by msaouab           #+#    #+#             */
+/*   Updated: 2022/04/17 22:04:32 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_env(t_var *var)
+void	ft_assign(char **dst, char *src, char *to_free)
 {
-	t_env	*current;
-
-	current = var->head_env;
-	while (current)
-	{
-		if (current->value)
-		{
-			ft_putstr_fd(current->key, 1);
-			ft_putstr_fd("=", 1);
-			ft_putstr_fd(current->value, 1);
-			ft_putstr_fd("\n", 1);
-		}
-		current = current->next;
-	}
+	*dst = src;
+	free(to_free);
 }

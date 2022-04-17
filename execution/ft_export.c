@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:46:41 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 11:50:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/15 15:54:22 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,18 @@ void	printenv(t_var *var)
 	current = var->head_env;
 	while (current)
 	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(current->key ,1);
-		if (ft_strcmp(current->value, "") != 0)
+		if (current->key)
 		{
-			ft_putstr_fd("=\"", 1);
-			ft_putstr_fd(current->value, 1);
-			ft_putstr_fd("\"", 1);
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(current->key ,1);
+			if (ft_strcmp(current->value, "") != 0)
+			{
+				ft_putstr_fd("=\"", 1);
+				ft_putstr_fd(current->value, 1);
+				ft_putstr_fd("\"", 1);
+			}
+			ft_putstr_fd("\n", 1);
 		}
-		ft_putstr_fd("\n", 1);
 		current = current->next;
 	}
 }
@@ -66,9 +69,19 @@ void	addvar_to_export(t_var *var, char **key_value, int i)
 		key_value[1] = ft_substr(var->prs->args[i], j + 1, ft_strlen(var->prs->args[i]) - j);
 	else
 		key_value[1] = ft_strdup("");
-	ft_substr(key_value[1], 0, ft_strlen(key_value[1]));
-	current = create_node(key_value);
-	ft_lstadd_back(&var->head_env, current);
+	while (current)
+	{
+		if (ft_strncmp(current->key, key_value[0], ft_strlen(key_value[0])) == 0)
+			break ;
+		current = current->next;
+	}
+	if (current)
+		current->value = key_value[1];
+	else
+	{
+		current = create_node(key_value);
+		ft_lstadd_back(&var->head_env, current);
+	}
 }
 
 void	ft_export(t_var *var)
@@ -93,6 +106,7 @@ void	ft_export(t_var *var)
 			key_value = malloc(sizeof(char) * 3);
 			key_value[2] = NULL;
 			addvar_to_export(var, key_value, i);
+			// ft_free_args(key_value);
 		}
 	}
 }

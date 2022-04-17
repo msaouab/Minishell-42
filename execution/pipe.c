@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 19:54:24 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 15:57:52 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/17 22:07:50 by msaouab           #+#    #+#             */
+/*   Updated: 2022/04/17 22:50:33 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_env(t_var *var)
+void	pipeline(t_var *var, char **env)
 {
-	t_env	*current;
+	(void)env;
+	int	n_pipe;
+	int	i;
 
-	current = var->head_env;
-	while (current)
+	n_pipe = ft_listsize_prs(var->prs) - 1;
+	i = 0;
+	pipe(var->fd);
+	while (i < n_pipe)
 	{
-		if (current->value)
+		var->pid = fork();
+		if (var->pid < 0)
+			perror("pid");
+		if (var->pid == 0)
 		{
-			ft_putstr_fd(current->key, 1);
-			ft_putstr_fd("=", 1);
-			ft_putstr_fd(current->value, 1);
-			ft_putstr_fd("\n", 1);
+			dup2(var->)
 		}
-		current = current->next;
 	}
 }

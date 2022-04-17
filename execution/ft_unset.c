@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 19:54:24 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 15:57:52 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/15 12:02:53 by msaouab           #+#    #+#             */
+/*   Updated: 2022/04/15 12:36:44 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_env(t_var *var)
+void	ft_unset(t_var *var)
 {
 	t_env	*current;
+	char	*tmp;
+	int		i;
 
-	current = var->head_env;
-	while (current)
+	i = 0;
+	while (var->prs->args[i])
 	{
-		if (current->value)
+		tmp = var->prs->args[i];
+		current = var->head_env;
+		while (current && ft_strncmp(current->key, tmp, ft_strlen(tmp)))
+			current = current->next;
+		if (current)
 		{
-			ft_putstr_fd(current->key, 1);
-			ft_putstr_fd("=", 1);
-			ft_putstr_fd(current->value, 1);
-			ft_putstr_fd("\n", 1);
+			free(current->key);
+			free(current->value);
+			current->key = NULL;
+			current->value = NULL;
 		}
-		current = current->next;
+		i++;
 	}
 }
