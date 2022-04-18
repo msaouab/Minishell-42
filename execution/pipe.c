@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 22:07:50 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/18 17:23:22 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/18 17:25:34 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	sys_execution_pipe(t_var *var, char **env)
 	if (!var->tmp)
 		return ;
 	execve(var->tmp, var->prs->args, env);
-	// ft_execve(var->tmp, var, env);
 }
 
 void	pipeline(t_var *var, char **env)
