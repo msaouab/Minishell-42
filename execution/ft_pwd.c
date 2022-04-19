@@ -6,18 +6,31 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 19:54:07 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/19 00:09:19 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:29:02 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+void	old_pwd(t_env *oldpwd, char *tmp)
+{
+	while (oldpwd)
+	{
+		if (ft_strncmp(oldpwd->key, "OLDPWD", 6) == 0)
+		{
+			free (oldpwd->value);
+			oldpwd->value = ft_strdup(tmp);
+		}
+		oldpwd = oldpwd->next;
+	}
+}
+
 void	ch_pwd(t_var *var)
 {
 	t_env	*current;
 	t_env	*oldpwd;
-	char	cwd[PATH_MAX];
 	char	*tmp;
+	char	cwd[PATH_MAX];
 
 	current = var->head_env;
 	oldpwd = var->head_env;
@@ -31,19 +44,14 @@ void	ch_pwd(t_var *var)
 		}
 		current = current->next;
 	}
-	while (oldpwd)
-	{
-		if (ft_strncmp(oldpwd->key, "OLDPWD", 6) == 0)
-			oldpwd->value = ft_strdup(tmp);
-		oldpwd = oldpwd->next;
-	}
+	old_pwd(oldpwd, tmp);
 }
 
 void	ft_pwd(t_var *var)
 {
 	t_env	*current;
 	char	pwd[PATH_MAX];
-	
+
 	current = var->head_env;
 	while (current && ft_strncmp("PWD", current->key, 3))
 		current = current->next;

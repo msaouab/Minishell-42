@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 00:49:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/13 14:51:02 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:40:52 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	fopen_read(t_var *var, t_files *files)
 	if (*files->file_name == TOKEN_DOLLAR)
 	{
 		*files->file_name = 36;
-		// ft_putstr_error("minishell: ", files->file_name, 
-		// ": ambiguous redirect\n");
 		var->error = 1;
 		return (0);
 	}
@@ -71,7 +69,6 @@ void	open_file(t_var *var)
 		{
 			if (!redir_append(var, files))
 				break ;
-			// error_red_app(var, files);
 			dup2(var->fd[1], STDOUT_FILENO);
 			close(var->fd[1]);
 		}

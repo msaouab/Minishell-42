@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:32:25 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/19 11:21:46 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:44:23 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_symbol(t_var *var)
 	var->split_sc = NULL;
 	var->split_pip = NULL;
 	var->prs = NULL;
-	var->prsTail = NULL;
+	var->prstail = NULL;
 	var->exit = 0;
 }
 
@@ -72,7 +72,6 @@ void	ft_newline(t_var *var, char *tmp)
 	var->line = readline("\033[1;32mminishell~>\033[0m");
 	if (!var->line)
 		exit(0);
-	// clear_history();
 	add_history(var->line);
 	tmp = var->line;
 	var->line = ft_strtrim(var->line, " ");

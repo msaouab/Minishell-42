@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:31:33 by msaouab           #+#    #+#             */
-/*   Updated: 2022/03/28 14:42:58 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:08:14 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,23 @@ void	free_list_cmd(t_parser *prs, t_var *var)
 	}
 	while (curr)
 	{
-		var->prsTail = curr->next_prs;
+		var->prstail = curr->next_prs;
 		free_args(curr->args);
 		free_list_files(curr);
 		free(curr);
 		curr = NULL;
-		curr = var->prsTail;
+		curr = var->prstail;
 	}
 	var->prs = NULL;
+}
+
+void	ft_free_doble(char **str, char *s)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i]);
+	free(str);
+	free(s);
 }

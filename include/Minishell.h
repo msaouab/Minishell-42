@@ -6,12 +6,12 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/19 01:06:45 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:09:02 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-# define	MINISHELL_H
+# define MINISHELL_H
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -115,7 +115,7 @@ typedef struct s_var
 	pid_t		pid;
 	t_parser	*prs;
 	t_parser	*parser;
-	t_parser	*prsTail;
+	t_parser	*prstail;
 	t_env		*head_env;
 	t_his		*head_his;
 }				t_var;
@@ -223,22 +223,19 @@ void	error_command(char *str, t_var *var);
 void	error_open_file(t_var *var, t_files *files);
 void	replace_pwd(t_env *pwd, t_env *oldpwd, char *path);
 void	pipe_exec(t_var *var, int *pipefds, int pipenumber, char **env);
-// void	no_file(char *cmd, char *file);
 char	**envp_continue(t_env *current, char **key_value, int *i);
 void	pipe_exec(t_var *var, int *pipefds, int pipenumber, char **env);
 void	pipe_exec_bis(t_parser *prs, int *pipefds, int j);
 void	signal_handler_c(int signo);
 void	signal_handler_quit(int signo);
 void	init_env(t_var *var, char **env);
-
-
 void	ch_pwd(t_var *var);
 void	ft_write(char *cmd);
 void	no_file(t_var *var, char *cmd, char *arg, char *msg);
-void    ft_error(char *file);
+void	ft_error(char *file);
 void	ft_exit(t_var *var);
 void	ft_assign(char **dst, char *src, char *to_free);
 void	pipeline(t_var *var, char **env);
 void	ft_multi_args(char *bash);
+void	ft_free_doble(char **str, char *s);
 #endif
-

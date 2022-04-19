@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 22:07:50 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/19 01:06:27 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:53:25 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,12 @@ void	sys_execution_pipe(t_var *var, char **env)
 	execve(var->tmp, var->prs->args, env);
 }
 
-void	pipeline(t_var *var, char **env)
+void	forking_in_pipe(t_var *var, int *pipefds, char **env, int n_pipe)
 {
-	(void)env;
-	int	n_pipe;
-	int	*pipefds;
 	int	i;
 	int	j;
 
-	n_pipe = ft_listsize_prs(var->prs) - 1;
-	pipefds = malloc(sizeof(int) * n_pipe);
-	var->tab_pipe = malloc(sizeof(pid_t) * n_pipe);
-	i = -1;
-	while (++i < n_pipe)
-		pipe(pipefds + i * 2);
 	i = 0;
-	var->parser = var->prs;
 	while (var->prs)
 	{
 		j = -1;
@@ -64,6 +54,23 @@ void	pipeline(t_var *var, char **env)
 		var->tab_pipe[j / 2] = var->pid;
 		i += 2;
 	}
+}
+
+void	pipeline(t_var *var, char **env)
+{
+	int	n_pipe;
+	int	*pipefds;
+	int	i;
+	int	j;
+
+	n_pipe = ft_listsize_prs(var->prs) - 1;
+	pipefds = malloc(sizeof(int) * n_pipe);
+	var->tab_pipe = malloc(sizeof(pid_t) * n_pipe);
+	i = -1;
+	while (++i < n_pipe)
+		pipe(pipefds + i * 2);
+	var->parser = var->prs;
+	forking_in_pipe(var, pipefds, env, n_pipe);
 	var->prs = var->parser;
 	j = -1;
 	while (++j < 2 * n_pipe)

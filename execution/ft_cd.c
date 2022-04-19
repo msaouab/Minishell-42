@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 21:10:47 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/18 23:20:19 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 11:44:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	ft_cd(t_var *var)
 		no_file(var, var->prs->cmd, home, ": No such file or directory\n");
 	else
 		ch_pwd(var);
+	free (home);
 }

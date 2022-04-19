@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:31:48 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/11 22:45:20 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:45:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	correct_flag_neg(t_var *var, int i)
 	int		j;
 	int		k;
 
-	fil = var->prsTail->file_head;
+	fil = var->prstail->file_head;
 	while (fil)
 	{
 		j = -1;
@@ -29,13 +29,13 @@ void	correct_flag_neg(t_var *var, int i)
 		}
 		fil = fil->next;
 	}
-	while (var->prsTail->args[++i])
+	while (var->prstail->args[++i])
 	{
 		k = -1;
-		while (var->prsTail->args[i][++k])
+		while (var->prstail->args[i][++k])
 		{
-			if (var->prsTail->args[i][k] < 0)
-				var->prsTail->args[i][k] = -var->prsTail->args[i][k];
+			if (var->prstail->args[i][k] < 0)
+				var->prstail->args[i][k] = -var->prstail->args[i][k];
 		}
 	}
 }
@@ -47,7 +47,7 @@ void	search_cmd_args(t_var *var, int *j)
 	int			i;
 
 	i = -1;
-	node = var->prsTail;
+	node = var->prstail;
 	tmp = var->split_pip[*j];
 	var->split_pip[*j] = ft_strtrim(var->split_pip[*j], " ");
 	free(tmp);

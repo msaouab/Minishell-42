@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:46:41 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/18 17:52:04 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:39:11 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,12 @@ void	printenv(t_var *var)
 	}
 }
 
-void	addvar_to_export(t_var *var, char **key_value, int i)
+void	sub_function_addvar(t_var *var, t_env *current, char **key_value)
 {
-	t_env	*current;
-	int	j;
-
-	j = 0;
-	current = var->head_env;
-	while (var->prs->args[i][j] != '=' && var->prs->args[i][j])
-		j++;
-	key_value[0] = ft_substr(var->prs->args[i], 0, j);
-	if (var->prs->args[i][j] == '=')
-		key_value[1] = ft_substr(var->prs->args[i], j + 1, \
-		ft_strlen(var->prs->args[i]) - j);
-	else
-		key_value[1] = ft_strdup("");
 	while (current)
 	{
-		if (ft_strncmp(current->key, key_value[0], ft_strlen(key_value[0])) == 0)
+		if (ft_strncmp(current->key, key_value[0], \
+		ft_strlen(key_value[0])) == 0)
 			break ;
 		current = current->next;
 	}
@@ -83,6 +71,25 @@ void	addvar_to_export(t_var *var, char **key_value, int i)
 		current = create_node(key_value);
 		ft_lstadd_back(&var->head_env, current);
 	}
+}
+
+void	addvar_to_export(t_var *var, char **key_value, int i)
+{
+	t_env	*current;
+	int		j;
+
+	j = 0;
+	current = var->head_env;
+	while (var->prs->args[i][j] != '=' && var->prs->args[i][j])
+		j++;
+	key_value[0] = ft_substr(var->prs->args[i], 0, j);
+	if (var->prs->args[i][j] == '=')
+		key_value[1] = ft_substr(var->prs->args[i], j + 1, \
+		ft_strlen(var->prs->args[i]) - j);
+	else
+		key_value[1] = "";
+	sub_function_addvar(var, current, key_value);
+	free (key_value[0]);
 }
 
 void	ft_export(t_var *var)
@@ -97,7 +104,7 @@ void	ft_export(t_var *var)
 	{
 		if (check_key(var->prs->args[i]) == 0)
 		{
-			no_file(var, var->prs->cmd, var->prs->args[i],\
+			no_file(var, var->prs->cmd, var->prs->args[i], \
 			": not a valid identifier\n");
 		}
 		else
