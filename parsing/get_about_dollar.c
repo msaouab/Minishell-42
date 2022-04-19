@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:31:43 by msaouab           #+#    #+#             */
-/*   Updated: 2022/03/28 14:43:05 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/18 22:55:04 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	check_dollar_first(t_var *var, char **line, int *i)
 {
-	if ((*line)[*i] == '$' && ((*line)[*i + 1] == '"' || (*line)[*i + 1] == '\'')
+	if ((*line)[*i] == '$' && ((*line)[*i + 1] == '"' || \
+	(*line)[*i + 1] == '\'')
 		&& (var->double_q == 1 || var->single_q == 1))
 		return ;
-	if ((*line)[*i] == '$' && ((*line)[*i + 1] == '"' || (*line)[*i + 1] == '\'')
+	if ((*line)[*i] == '$' && ((*line)[*i + 1] == '"' || \
+	(*line)[*i + 1] == '\'')
 		&& (var->double_q == 0 || var->single_q == 0))
 	{
 		new_str(line, *i);

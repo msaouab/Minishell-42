@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/17 22:17:43 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 01:06:45 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ void	ft_echo(t_var *var);
 void	ft_export(t_var *var);
 void	execution(t_var *var, char **env);
 void	sys_execution(t_var *var, char **env);
-int		builtin(t_var *var);
+int		builtin(t_var *var, int pipe);
 int		ft_sign(char c);
 int		ft_isdig(char *s);
 char	**envp(t_var *var);
@@ -239,5 +239,6 @@ void    ft_error(char *file);
 void	ft_exit(t_var *var);
 void	ft_assign(char **dst, char *src, char *to_free);
 void	pipeline(t_var *var, char **env);
+void	ft_multi_args(char *bash);
 #endif
 

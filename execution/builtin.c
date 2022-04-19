@@ -6,13 +6,13 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:46:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 15:58:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 01:06:11 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	builtin(t_var *var)
+int	builtin(t_var *var, int pipe)
 {
 	if (!(ft_strncmp("cd", *(var->prs->args), 3)) && !var->error)
 		ft_cd(var);
@@ -30,5 +30,7 @@ int	builtin(t_var *var)
 		ft_unset(var);
 	else
 		return (-1);
+	if (pipe == 1)
+		exit (0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:32:25 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/11 23:07:51 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 11:21:46 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	fill_command(t_var *var, char **env)
 
 	prs = NULL;
 	i = -1;
-	// printf("%s\n", prs->cmd);
 	var->split_sc = ft_split(var->line, ';');
 	var->old_out = dup(STDOUT_FILENO);
 	var->old_in = dup(STDIN_FILENO);
@@ -70,8 +69,11 @@ void	fill_command(t_var *var, char **env)
 
 void	ft_newline(t_var *var, char *tmp)
 {
-	// read_line(var);
 	var->line = readline("\033[1;32mminishell~>\033[0m");
+	if (!var->line)
+		exit(0);
+	// clear_history();
+	add_history(var->line);
 	tmp = var->line;
 	var->line = ft_strtrim(var->line, " ");
 	free(tmp);
@@ -83,15 +85,14 @@ int	main(int ac, char **av, char **env)
 	char	*tmp;
 	int		i;
 
-	ac = 1;
-	av = NULL;
+	if (ac != 1)
+		ft_multi_args(av[1]);
 	tmp = NULL;
 	init_env(&var, env);
 	while (1)
 	{
 		i = -1;
 		init_symbol(&var);
-		// ft_putstr_fd("\033[1;32mminishell~>\033[0m", 1);
 		ft_newline(&var, tmp);
 		syntax_error(&var, i);
 		if (var.error != 0)

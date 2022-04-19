@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/18 17:28:14 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 01:06:21 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,22 @@ char	*join_command(t_var *var)
 	else
 	{
 		path = get_path(var);
-		cmd = var->prs->cmd;
-		cmd = ft_strjoin("/", cmd);
+		cmd = ft_strjoin("/", var->prs->cmd);
 		i = -1;
 		while (path[++i])
 		{
 			ft_assign(&path[i], ft_strjoin(path[i], cmd), path[i]);
 			if (access(path[i], X_OK) == 0)
 			{
-				cmd = path[i];
-				return (path[i]);
+				free(cmd);
+				cmd = ft_strdup(path[i]);
+				ft_free_args(path);
+				return (cmd);
 			}
 		}
 	}
+	ft_free_args(path);
+	free(cmd);
 	if (path[i] == NULL)
 		ft_write(var->prs->cmd);
 	return (NULL);
@@ -73,11 +76,14 @@ void	sys_execution(t_var *var, char **env)
 
 	file = var->prs->file_head;
 	path = join_command(var);
+	if (!path)
+		return ;
 	var->pid = fork();
 	if (var->pid == -1)
 		strerror(var->pid);
 	if (var->pid == 0)
 		execve(path, var->prs->args, env);
+	free (path);
 	waitpid(var->pid, NULL, 0);
 }
 
@@ -89,7 +95,7 @@ void	execution(t_var *var, char **env)
 			open_file(var);
 		if (!var->error)
 		{
-			if (builtin(var) < 0 && !var->error)
+			if (builtin(var, 0) < 0 && !var->error)
 				sys_execution(var, env);
 		}
 	}

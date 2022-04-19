@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:13:09 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 12:07:43 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/18 23:45:00 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	is_digit(char *str)
 void	ft_exit(t_var *var)
 {
 	if (var->prs->args[1] && var->prs->args[2])
+	{
 		ft_putstr_fd("exit\nminishell: exit: too many arguments\n", 1);
+		var->status = 1;
+	}
 	else if (var->prs->args[1] && (is_digit(var->prs->args[1]) == 0))
 	{
 		ft_putstr_fd("exit\nminshell: exit: ", 1);

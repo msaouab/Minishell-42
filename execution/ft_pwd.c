@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 19:54:07 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/13 15:59:43 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/19 00:09:19 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	ft_pwd(t_var *var)
 	current = var->head_env;
 	while (current && ft_strncmp("PWD", current->key, 3))
 		current = current->next;
-	printf("%s\n", getcwd(pwd, sizeof(pwd)));
+	ft_putstr_fd(getcwd(pwd, sizeof(pwd)), 1);
+	ft_putstr_fd("\n", 1);
 }
