@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 void	func_val_dollar(t_var *var, char **line, int *i)
 {

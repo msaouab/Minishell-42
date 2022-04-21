@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 void	ft_unset(t_var *var)
 {

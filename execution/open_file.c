@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 int	fopen_read(t_var *var, t_files *files)
 {

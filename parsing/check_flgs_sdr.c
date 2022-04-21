@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 void	off_redir(t_var *var)
 {

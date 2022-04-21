@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 void	remove_file(int *i, int org, int *j, t_var *var)
 {

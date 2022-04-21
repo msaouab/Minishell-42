@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 void	hundel_error(int err, t_var *var)
 {
@@ -103,7 +103,7 @@ void	ft_free_doble(char **str, char *s)
 
 	i = 0;
 	while (str[i])
-		free(str[i]);
+		free(str[i++]);
 	free(str);
 	free(s);
 }

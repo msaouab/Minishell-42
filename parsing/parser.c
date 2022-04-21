@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 void	init_symbol(t_var *var)
 {
@@ -69,10 +69,11 @@ void	fill_command(t_var *var, char **env)
 
 void	ft_newline(t_var *var, char *tmp)
 {
-	var->line = readline("\033[1;32mminishell~>\033[0m");
+	var->line = readline("minishell~> ");
 	if (!var->line)
 		exit(0);
 	add_history(var->line);
+	puts(var->line);
 	tmp = var->line;
 	var->line = ft_strtrim(var->line, " ");
 	free(tmp);

@@ -29,10 +29,6 @@ SRC =	./parsing/parser.c\
 	  	./parsing/get_files.c\
 	  	./parsing/outils.c\
 		./parsing/check_flgs_sdr.c\
-		./parsing/read_line.c\
-		./parsing/outils_readline.c\
-		./parsing/signals_readline.c\
-		./parsing/press_key.c\
 		./parsing/hundel_error.c\
 		./parsing/signal_handeler.c\
 		./parsing/get_about_dollar.c\

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includs/minishell.h"
 
 int	check_path(t_var *var)
 {
@@ -64,6 +64,8 @@ char	*join_command(t_var *var)
 		}
 	}
 	ft_free_doble(path, cmd);
+	// free (cmd);
+	// ft_free_args(path);
 	if (path[i] == NULL)
 		ft_write(var->prs->cmd);
 	return (NULL);

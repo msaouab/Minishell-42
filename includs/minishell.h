@@ -13,7 +13,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -136,7 +135,7 @@ void	check_double_q(t_var *var);
 void	check_redir_r(int i, t_var *var);
 void	check_redir_l(int i, t_var *var);
 void	check_redir_d(int i, t_var *var);
-void	check_semicolomn(int i, t_var *var);
+void	check_semicolomn(int i, t_var *vcar);
 void	check_pipe(int i, t_var *var);
 void	conv_neg_space(int i, t_var *var);
 void	hundel_error(int err, t_var *var);
