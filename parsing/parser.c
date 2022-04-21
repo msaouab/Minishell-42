@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:32:25 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/19 14:44:23 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/21 17:46:39 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	ft_newline(t_var *var, char *tmp)
 	if (!var->line)
 		exit(0);
 	add_history(var->line);
-	puts(var->line);
 	tmp = var->line;
 	var->line = ft_strtrim(var->line, " ");
 	free(tmp);
