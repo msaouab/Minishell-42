@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/22 01:32:24 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/22 15:53:25 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,18 @@ char	*join_command(t_var *var)
 
 	if (check_path(var) == 1)
 		return (var->prs->cmd);
-	else
+	path = get_path(var);
+	cmd = ft_strjoin("/", var->prs->cmd);
+	i = -1;
+	while (path[++i])
 	{
-		path = get_path(var);
-		cmd = ft_strjoin("/", var->prs->cmd);
-		i = -1;
-		while (path[++i])
+		ft_assign(&path[i], ft_strjoin(path[i], cmd), path[i]);
+		if (access(path[i], X_OK) == 0)
 		{
-			ft_assign(&path[i], ft_strjoin(path[i], cmd), path[i]);
-			if (access(path[i], X_OK) == 0)
-			{
-				free(cmd);
-				cmd = ft_strdup(path[i]);
-				ft_free_args(path);
-				return (cmd);
-			}
+			free(cmd);
+			cmd = path[i];
+			ft_free_doble(path, NULL);
+			return (cmd);
 		}
 	}
 	ft_free_doble(path, cmd);
@@ -86,7 +83,6 @@ void	sys_execution(t_var *var, char **env)
 		execve(path, var->prs->args, env);
 	}
 	waitpid(var->pid, NULL, 0);
-	free(path);
 }
 
 void	execution(t_var *var, char **env)

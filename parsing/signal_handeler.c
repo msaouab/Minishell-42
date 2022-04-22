@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:55:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/22 01:32:41 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/22 15:35:38 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	signal_handler_c(int signo)
 {
 	t_var	var;
-	if (signo == SIGINT)
-    {
-        rl_on_new_line();
-        ft_putstr_fd("\n", 1);
-        rl_replace_line("", 0);
-        if (var.hanlder_c == 1)
-			rl_redisplay();
-    }
+
+	(void)signo;
+	rl_on_new_line();
+	ft_putstr_fd("\n", 1);
+	rl_replace_line("", 0);
+	if (var.hanlder_c == 0)
+	{
+		rl_redisplay();
+		return ;
+	}
 	g_var->status = 130;
 }
 

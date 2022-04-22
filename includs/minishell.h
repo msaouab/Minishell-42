@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/22 01:30:33 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/22 15:48:17 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <signal.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <string.h>
@@ -238,4 +239,6 @@ void	ft_assign(char **dst, char *src, char *to_free);
 void	pipeline(t_var *var, char **env);
 void	ft_multi_args(char *bash);
 void	ft_free_doble(char **str, char *s);
+void	ft_free_path(char **cmd);
+
 #endif
