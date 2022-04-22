@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:31:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 13:18:13 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/22 01:30:51 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	get_env(char **envp, t_var *var)
 void	init_env(t_var *var, char **env)
 {
 	get_env(env, var);
+	var->hanlder_c = 0;
 	var->home = find_value("HOME", var);
 	g_var = var;
 	signal(SIGINT, signal_handler_c);

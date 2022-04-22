@@ -6,13 +6,13 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 12:54:06 by msaouab           #+#    #+#              #
-#    Updated: 2022/04/17 22:18:17 by msaouab          ###   ########.fr        #
+#    Updated: 2022/04/22 01:28:18 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -L$(shell brew --prefix readline)/lib -I$(shell brew --prefix readline)/include -lreadline
 
 CC = gcc
 
@@ -30,10 +30,10 @@ SRC =	./parsing/parser.c\
 	  	./parsing/outils.c\
 		./parsing/check_flgs_sdr.c\
 		./parsing/hundel_error.c\
-		./parsing/signal_handeler.c\
 		./parsing/get_about_dollar.c\
 		./parsing/ft_frees.c\
 		./parsing/linked_list.c\
+		./parsing/signal_handeler.c\
 		./execution/execution.c\
 	  	./execution/builtin.c\
 		./execution/ft_echo.c\
@@ -46,16 +46,7 @@ SRC =	./parsing/parser.c\
 		./execution/error.c\
 		./execution/open_file.c\
 	  	./execution/free.c\
-	  	./execution/pipe.c\
-	  	# ./execution/echo_builtin.c \
-	  	# ./execution/error_file.c\
-		# ./execution/export_builtin.c\
-		# ./execution/message_errors.c\
-		# ./execution/pipe_execution.c\
-		# ./execution/utils.c\
-		# ./execution/beta_export.c\
-
-OBJ = $(SRC:.c=.o)
+	  	./execution/pipe.c
 
 magenta = `tput setaf 5`
 
@@ -67,15 +58,11 @@ ED = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(SRC) includs/minishell.h
 	@make -C libft
-	@$(CC) $(CFLAGS) $(OBJ) -lreadline $(LIB) -lncurses -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME)
 	@echo "$(white)${bold}LIBRARY CREATION${ED}"
 	@echo "$(white)${bold}... DONE ...${ED}"
-
-%.o : %.c
-	@echo "${bold}${white}COMPILING SRC...[OK]${ED}"
-	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)

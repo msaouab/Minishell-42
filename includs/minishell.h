@@ -6,22 +6,20 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:09:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/19 15:09:02 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/22 01:30:33 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <readline/history.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <string.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
 # include <sys/stat.h>
 # include <sys/errno.h>
@@ -29,6 +27,8 @@
 # include <dirent.h>
 # include <curses.h>
 # include <term.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # define NAME_OUTPUT "minishell"
 # define KEY_U 0x415b1b
 # define KEY_DW 0x425b1b
@@ -110,6 +110,7 @@ typedef struct s_var
 	int			status;
 	int			plus;
 	char		*tmp;
+	int			hanlder_c;
 	pid_t		*tab_pipe;
 	pid_t		pid;
 	t_parser	*prs;
