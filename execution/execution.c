@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/22 15:53:25 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/23 00:13:24 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void	sys_execution(t_var *var, char **env)
 	path = join_command(var);
 	if (!path)
 		return ;
+	var->hanlder_c = 1;
 	var->pid = fork();
 	if (var->pid == -1)
 		strerror(var->pid);
 	if (var->pid == 0)
 	{
-		var->hanlder_c = 1;
 		execve(path, var->prs->args, env);
 	}
 	waitpid(var->pid, NULL, 0);
