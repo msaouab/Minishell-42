@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:55:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/23 00:12:37 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/24 14:01:13 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void	signal_handler_c(int signo)
 void	signal_handler_quit(int signo)
 {
 	(void)signo;
-	ft_putstr_fd("Quit: 3\n", 2);
 	g_var->status = 131;
 }
