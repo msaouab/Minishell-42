@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/23 00:13:24 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/24 16:16:05 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*join_command(t_var *var)
 		if (access(path[i], X_OK) == 0)
 		{
 			free(cmd);
-			cmd = path[i];
+			cmd = ft_strdup(path[i]);
 			ft_free_doble(path, NULL);
 			return (cmd);
 		}
@@ -74,14 +74,15 @@ void	sys_execution(t_var *var, char **env)
 	path = join_command(var);
 	if (!path)
 		return ;
-	var->hanlder_c = 1;
 	var->pid = fork();
 	if (var->pid == -1)
 		strerror(var->pid);
 	if (var->pid == 0)
 	{
+		var->hanlder_c = 1;
 		execve(path, var->prs->args, env);
 	}
+	free (path);
 	waitpid(var->pid, NULL, 0);
 }
 

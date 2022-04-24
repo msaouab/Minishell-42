@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 22:07:50 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/23 00:13:41 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/24 15:42:22 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	forking_in_pipe(t_var *var, int *pipefds, char **env, int n_pipe)
 	while (var->prs)
 	{
 		j = -1;
-		var->hanlder_c = 1;
 		var->pid = fork();
 		if (var->pid < 0)
 			perror("fork");
 		if (var->pid == 0)
 		{
+			var->hanlder_c = 1;
 			duplicate(var->prs, pipefds, i);
 			if (ft_listsize_file(var->prs->file_head) > 0)
 				open_file(var);
