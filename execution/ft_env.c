@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 19:54:24 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/15 15:57:52 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/27 15:47:57 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_env(t_var *var)
 	current = var->head_env;
 	while (current)
 	{
-		if (current->value)
+		if (ft_strcmp(current->value, "") != 0)
 		{
 			ft_putstr_fd(current->key, 1);
 			ft_putstr_fd("=", 1);
