@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/24 16:16:05 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/27 15:37:01 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	sys_execution(t_var *var, char **env)
 		var->hanlder_c = 1;
 		execve(path, var->prs->args, env);
 	}
-	free (path);
+	if (!check_path(var))
+		free (path);
 	waitpid(var->pid, NULL, 0);
 }
 
